@@ -139,11 +139,11 @@ module.exports = msgHandler = async (client, message) => {
             client.sendLinkWithAutoPreview(from, 'https://saweria.co/donate/mhankbarbar', donate)
             break
         case '!tts':
-            if (args.length === 1) return client.reply(from, 'Kirim perintah *!tts [id, en, jp, ar] [teks]*, contoh *!tts id halo semua*')
+            if (args.length === 1) return client.reply(from, 'Kirim perintah *!tts [id, en, pt, jp] [teks]*, contoh *!tts id halo semua*')
             const ttsId = require('node-gtts')('id')
             const ttsEn = require('node-gtts')('en')
 	    const ttsJp = require('node-gtts')('ja')
-            const ttsAr = require('node-gtts')('ar')
+            const ttsPt = require('node-gtts')('pt')
             const dataText = body.slice(8)
             if (dataText === '') return client.reply(from, 'Baka?', id)
             if (dataText.length > 500) return client.reply(from, 'Teks terlalu panjang!', id)
@@ -160,9 +160,9 @@ module.exports = msgHandler = async (client, message) => {
                 ttsJp.save('./media/tts/resJp.mp3', dataText, function () {
                     client.sendPtt(from, './media/tts/resJp.mp3', id)
                 })
-	    } else if (dataBhs == 'ar') {
-                ttsAr.save('./media/tts/resAr.mp3', dataText, function () {
-                    client.sendPtt(from, './media/tts/resAr.mp3', id)
+	    } else if (dataBhs == 'pt') {
+                ttsPt.save('./media/tts/resPt.mp3', dataText, function () {
+                    client.sendPtt(from, './media/tts/resPt.mp3', id)
                 })
             } else {
                 client.reply(from, 'Masukkan data bahasa : [id] untuk indonesia, [en] untuk inggris, [jp] untuk jepang, dan [ar] untuk arab', id)
